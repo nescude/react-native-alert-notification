@@ -7,10 +7,12 @@ export type IConfigDialog = {
   type: ALERT_TYPE;
   title?: string;
   textBody?: string;
+  buttons?: string[];
   button?: string;
   autoClose?: number | boolean;
   closeOnOverlayTap?: boolean;
-  onPressButton?: () => void;
+  forceCloseAfterPress?: boolean;
+  onPressButton?: (index?: number) => void;
   onShow?: () => void;
   onHide?: () => void;
 };
@@ -178,12 +180,44 @@ export class Dialog extends React.Component<IProps, IState> {
    */
   private _buttonRender = (): JSX.Element => {
     const { styles } = this.state;
-    const { type, onPressButton, button } = this.state.config!;
-    if (button) {
+    const { type, onPressButton, button, buttons, forceCloseAfterPress } = this.state.config!;
+    let list = buttons || (button ? [button] : undefined);
+    if (list) {
+      let evens: string[] = list.filter((_: string, i: number) => i % 2 == 0);
+      let odds: string[] = list.filter((_: string, i: number) => i % 2 != 0);
       return (
-        <TouchableOpacity style={StyleSheet.flatten([styles.button, styles[type]])} onPress={onPressButton ?? this._close}>
-          <Text style={styles.buttonLabel}>{button}</Text>
-        </TouchableOpacity>
+        <View>
+          {evens.map((buttonText: string, i: number) => {
+            return (
+              <View key={'_DialogButtonRow' + i} style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                <TouchableOpacity
+                  key={'_DialogButton' + i * 2}
+                  style={StyleSheet.flatten([styles.button, styles[type]])}
+                  onPress={(_) => {
+                    onPressButton ? onPressButton(i * 2) : this._close();
+                    if (forceCloseAfterPress) this._close();
+                  }}
+                >
+                  <Text style={styles.buttonLabel}>{buttonText}</Text>
+                </TouchableOpacity>
+                {!odds[i] ? (
+                  <></>
+                ) : (
+                  <TouchableOpacity
+                    key={'_DialogButton' + odds[i * 2 + 1]}
+                    style={StyleSheet.flatten([styles.button, styles[type]])}
+                    onPress={(_) => {
+                      onPressButton ? onPressButton(i * 2 + 1) : this._close();
+                      if (forceCloseAfterPress) this._close();
+                    }}
+                  >
+                    <Text style={styles.buttonLabel}>{odds[i]}</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            );
+          })}
+        </View>
       );
     }
     return <></>;

@@ -107,6 +107,40 @@ const DATA = [
             onHide: () => Alert.alert('hide is call after end animation'),
           }),
       },
+      {
+        title: 'Multi-button',
+        onPress: () =>
+          Dialog.show({
+            type: ALERT_TYPE.SUCCESS,
+            title: 'success',
+            button: 'ok',
+            buttons: ['1', '2', '3', '4', '5', '6', '7', '8'],
+            forceCloseAfterPress: false,
+            textBody: _textBody('multi-button'),
+            onPressButton: (index?: number) => {
+              if (index) {
+                Alert.alert('You pressed: ' + (index + 1));
+              }
+            },
+          }),
+      },
+      {
+        title: 'Multi-button force close',
+        onPress: () =>
+          Dialog.show({
+            type: ALERT_TYPE.DANGER,
+            title: 'success',
+            button: 'ok',
+            buttons: ['1', '2', '3', '4', '5', '6', '7', '8'],
+            forceCloseAfterPress: true,
+            textBody: _textBody('multi-button force close'),
+            onPressButton: (index?: number) => {
+              if (index) {
+                Alert.alert('You pressed: ' + (index + 1));
+              }
+            },
+          }),
+      },
     ],
   },
 
