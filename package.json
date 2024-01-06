@@ -1,5 +1,5 @@
 {
-  "name": "react-native-alert-notification",
+  "name": "@nescude/react-native-alert-notification",
   "version": "0.4.0",
   "license": "MIT",
   "description": "Toast notification and dialog box notification for react native",
@@ -46,14 +46,21 @@
     "modal"
   ],
   "author": "Rodolphe Jerez <contact@codingbyjerez.com> (github.com/codingbyjerez)",
+  "contributors": [
+    {
+      "name": "Nicolás Escudé",
+      "email": "nicolasescude.soft@gmail.com",
+      "url": "https://github.com/nescude"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/CodingByJerez/react-native-alert-notification"
+    "url": "https://github.com/nescude/react-native-alert-notification"
   },
   "bugs": {
-    "url": "https://github.com/CodingByJerez/react-native-alert-notification/issues"
+    "url": "https://github.com/nescude/react-native-alert-notification/issues"
   },
-  "homepage": "https://github.com/CodingByJerez/react-native-alert-notification#readme",
+  "homepage": "https://github.com/nescude/react-native-alert-notification#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
