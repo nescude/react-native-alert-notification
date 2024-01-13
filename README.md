@@ -1,3 +1,6 @@
+# @nescude/react-native-alert-notification
+## Fork of react-native-alert-notification that supports multiple buttons with their own callbacks in notification alerts. Not planning to PR at the moment.<br><br>Start of original README.md:
+
 # react-native-alert-notification
 
 ## Example Dialog Box
